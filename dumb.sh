@@ -24,13 +24,17 @@ fi
 # Add newline if doesn't exist
 sed -i -e '$a\' $dumb_file
 
-echo "Goodbye Lib folder!"
-rm -rf ./Lib
-mkdir Lib
-cd Lib
+lib_folder=.tmp-lib
+rm -rf $lib_folder
+mkdir $lib_folder
+cd $lib_folder
 cat $dumb_file | tr -d '\r' | while read repo; do
     git clone $repo last
     cp -fa last/. ./
     rm -rf last
     rm -rf .git
 done
+cd ..
+echo "Goodbye Lib folder!"
+rm -rf ./Lib
+mv $lib_folder Lib
