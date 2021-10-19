@@ -26,6 +26,6 @@ foreach($line in Get-Content "..\$dumbFile") {
 }
 Set-Location ..
 Write-Host "Goodbye old lib folder"
-Remove-Item -Force -Recurse -Path .\Lib
+Remove-Item -Force -Recurse -Path .\Lib -ErrorAction:Ignore
 Move-Item $libFolder .\Lib
 
